@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Image, Table } from "semantic-ui-react";
 
 const CardView = (props) => {
-    return (<Table inverted>
+    return (<Table inverted size='small'>
         <Table.Header>
             <Table.Row>
                 <Table.HeaderCell>Image</Table.HeaderCell>

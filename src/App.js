@@ -4,6 +4,9 @@ import CardSearch from './CardSearch';
 import CardView from './CardView';
 import ReadDeckList from './ReadDeckList';
 import DeckView from './DeckView';
+import Menu from './Menu';
+import Booster from './Booster';
+import { BrowserRouter, Route } from 'react-router-dom';
 
 class App extends React.Component {
   constructor(props) {
@@ -46,10 +49,20 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <CardSearch change={this.onTextChange} click={this.onSearchButtonClick} searchText={this.state.searchText} onKeyUp={this.onKeyUp} />
-        <CardView cards={this.state.cards} />
-        <ReadDeckList change={this.setDeckList} />
-        <DeckView deckList={this.state.deckList} />
+        <BrowserRouter>
+          <React.Fragment>
+            <Menu />            
+            <Route exact path="/search" 
+            render={(props) => <CardSearch change={this.onTextChange} click={this.onSearchButtonClick} searchText={this.state.searchText} onKeyUp={this.onKeyUp} />} />
+            <Route exact path="/search"
+            render={(props) => <CardView cards={this.state.cards} />} />
+            <Route exact path="/deck"
+            render={(props) => <ReadDeckList change={this.setDeckList} />} />
+            <Route exact path="/deck"
+            render={(props) => <DeckView deckList={this.state.deckList} />} />
+            <Route exact path="/booster" component={Booster} />
+          </React.Fragment>
+        </BrowserRouter>
       </div>
     );
   }
