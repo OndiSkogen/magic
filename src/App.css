@@ -45,6 +45,8 @@
 }
 
 .main-container {
+  margin-right: 10%;
+  width: 60%;
   /* left: 500px;
   top: 45px; */
   z-index: 1;
@@ -75,6 +77,10 @@
   background-color: rgba(255, 255, 255, 0.8);
   border: 1px solid rgba(0, 0, 0, 0.8);
   padding: 10px;
-  font-size: 30px;
+  font-size: 12px;
   text-align: center;
+}
+
+.card-name {
+  font-weight: bold;
 }

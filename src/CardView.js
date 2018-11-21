@@ -1,22 +1,14 @@
 import * as React from 'react';
-import { Image, Table } from "semantic-ui-react";
 
 const CardView = (props) => {
-    return (<Table inverted size='small'>
-        <Table.Header>
-            <Table.Row>
-                <Table.HeaderCell>Image</Table.HeaderCell>
-                <Table.HeaderCell>Rules text</Table.HeaderCell>
-            </Table.Row>
-        </Table.Header>
-        <Table.Body>
-        {props.cards.map(card =>
-            <Table.Row key={card.id}>
-                {card.imageUrl ? <Table.Cell><Image size='medium' src={card.imageUrl} /></Table.Cell> : <Table.Cell><Image size='medium' src=".\Magic_card_back.jpg" /></Table.Cell>}
-                <Table.Cell>{card.text}</Table.Cell>
-            </Table.Row>
-        )}
-        </Table.Body>
-    </Table>);
+    return (
+            <div className="main-container">
+                <div className="grid-container">
+                    {props.cards.map(card =>
+                        <div className="grid-item" key={card.id} ><img src={card.imageUrl ? card.imageUrl : "./Magic_card_back.jpg"} alt={card.name} height="245" width="175" /><br /><p className="card-name">{card.name}</p>{card.text}</div>
+                    )}
+                </div>
+            </div>
+    );
 }
 export default CardView;

@@ -57,10 +57,7 @@ class App extends React.Component {
             render={(props) => <CardSearch change={this.onTextChange} click={this.onSearchButtonClick} searchText={this.state.searchText} onKeyUp={this.onKeyUp} />} />
             <Route exact path="/search"
             render={(props) => <CardView cards={this.state.cards} />} />
-            <Route exact path="/deck"
-            render={(props) => <ReadDeckList change={this.setDeckList} />} />
-            <Route exact path="/deck"
-            render={(props) => <DeckView deckList={this.state.deckList} />} />
+            <Route exact path="/deck" component={ReadDeckList} />
             <Route exact path="/booster" component={Booster} />
           </React.Fragment>
         </BrowserRouter>
