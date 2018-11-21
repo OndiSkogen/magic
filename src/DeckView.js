@@ -1,15 +1,16 @@
 import React from 'react';
 //import { List, Table, Image } from "semantic-ui-react";
 
+
 const DeckView = (props) => {
     let tmpMain = [];
     let tmpSide = [];
     let mainDeckForView = [];
-    let sideboardForView = [];
+    let sideboardForView = [];    
 
     const buildDeck = () => {
         let index;
-             
+
         for (let i = 0; i < props.deckList.length; i++) {
             if (props.deckList[i].name === "") {
                 index = i;
@@ -21,14 +22,17 @@ const DeckView = (props) => {
             tmpSide.push(props.deckList[i]);
         }
         for (let card of tmpMain) {
-            fetch('https://api.magicthegathering.io/v1/cards/?name="' + card.name + '"&?contains="imageUrl"').then(res => res.json()).then(result => {
-                let tmpId = result.cards[0].multiverseid ? result.cards[0].multiverseid : null;
-                for (let i = 0; i < card.number; i++) {
-                    fetch('https://api.magicthegathering.io/v1/cards/' + tmpId).then(res => res.json()).then(result => {
-                        console.log(result, "result");
-                        mainDeckForView.push(result);
-                    });
-                }
+            fetch('https://api.magicthegathering.io/v1/cards/?name="' + card.name + '"&?contains=imageUrl').then(res => res.json()).then(result => {
+                let tmpId = result.cards[0].multiverseid ? result.cards[0].multiverseid : result.cards[1].multiverseid;
+                console.log(tmpId, "tmpId");
+                if (tmpId !== null) {
+                    for (let i = 0; i < card.number; i++) {
+                        fetch('https://api.magicthegathering.io/v1/cards/' + tmpId).then(res => res.json()).then(result => {
+                            console.log(result, "result");
+                            mainDeckForView.push(result);
+                        });
+                    }
+                }                
             });
 
         }
@@ -40,9 +44,10 @@ const DeckView = (props) => {
                 }
             });
         }
-        console.log(mainDeckForView, "maindeck");
+        console.log(mainDeckForView, "maindeck");  
     }
-    buildDeck()
+    buildDeck();
+
     return (
 
         <div>

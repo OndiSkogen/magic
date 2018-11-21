@@ -44,6 +44,7 @@ class App extends React.Component {
 
   setDeckList(deckList) {
     this.setState({ deckList: deckList });
+    console.log(deckList, "set deckList");
   }
 
   render() {
