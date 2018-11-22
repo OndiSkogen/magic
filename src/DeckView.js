@@ -1,9 +1,6 @@
 import React from 'react';
-//import { List, Table, Image } from "semantic-ui-react";
-
 
 const DeckView = (props) => {
-    console.log(props.card.card, "props.card");
     // let tmpMain = [];
     // let tmpSide = [];
     // let mainDeckForView = [];
@@ -54,17 +51,18 @@ const DeckView = (props) => {
 
     return (
         <div className="main-container">
-                <div className="grid-container">
-                        <div className="grid-item"><img src={props.card.card.imageUrl} alt={props.card.card.name} height="245" width="175" /><br /><p className="card-name">{props.card.card.name}</p>{props.card.card.text}</div>                    
+            <div className="grid-container-deck-view">
+                <div className="grid-item" key={props.card.card.id} >
+                    <p className="card-name">{props.card.card.name}</p>
+                    <img src={props.card.card.imageUrl ? props.card.card.imageUrl : "./Magic_card_back.jpg"} alt={props.card.card.name} height="245" width="175" /><br />
+                    <p className="card-name">{props.card.card.type}</p>
+                    <p>{props.card.card.text}</p>
+                    {props.card.card.power ? <p>Power/Toughness: {props.card.card.power}/{props.card.card.toughness}</p> : null}
+                    {props.card.card.loyalty ? <p>Loyalty: {props.card.card.loyalty}</p> : null}
+                    <p>{props.card.card.setName}</p>
                 </div>
             </div>
-        // <div>
-        //     <h3>Deck View</h3>
-        //     <ul>
-        //         {props.deckList.map(d =>
-        //             <li key={d.cards[0].id}>{d.cards[0].name}</li>)}
-        //     </ul>
-        // </div>
+        </div>
     );
 }
 export default DeckView

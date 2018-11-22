@@ -19,7 +19,7 @@ class Booster extends React.Component {
     render() {
         return (
             <div className="main-container">
-                <div className="grid-container">
+                <div className="grid-container-booster">
                     {this.state.cards.map(card =>
                         <div className="grid-item" key={card.multiverseid} ><img src={card.imageUrl} alt={card.name} height="245" width="175" /></div>
                     )}
